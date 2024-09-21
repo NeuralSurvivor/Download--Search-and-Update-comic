@@ -31,6 +31,9 @@ def search_comics(search_term):
 
 def process_comic(comic_url, folder):
     try:
+        os.makedirs(os.path.join(COMICS_DIR, folder), exist_ok=True)
+        with open(os.path.join(COMICS_DIR, folder, "url.txt"), "w") as f:
+            f.write(comic_url)
         soup = fetch_page(comic_url)
         list_story = soup.find("ul", {"class": "list-story"})
         if list_story:
@@ -62,7 +65,7 @@ def search_and_download(args):
 
     if args.download:
         download_list = []
-        with ThreadPoolExecutor(max_workers=10) as executor:
+        with ThreadPoolExecutor() as executor:
             futures = [
                 executor.submit(
                     process_comic,
