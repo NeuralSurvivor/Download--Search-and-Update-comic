@@ -25,7 +25,6 @@ Features:
 - Sanitizes folder names to avoid issues with special characters.
 - Saves the source URL in a text file within the comic's folder.
 
-### search_download.py
 
 ### search_download.py
 
