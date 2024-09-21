@@ -6,13 +6,26 @@ This project provides a set of Python scripts for searching, downloading, and ma
 ## Scripts
 
 ### download_comic.py
-
-Downloads a complete comic series from a given URL.
+Downloads a complete comic series from a given URL and saves individual issues as PDF files.
 
 Usage:
 
+```bash
 python download_comic.py --url <comic_url> --folder <folder_name>
+```
 
+- `<comic_url>`: The URL of the comic series to download.
+- `<folder_name>`: The name of the folder where the comic will be saved.
+
+Features:
+- Creates a folder for the comic series inside a "Comics" directory.
+- Downloads all available issues of the comic series.
+- Uses multithreading for faster downloads.
+- Skips already downloaded issues.
+- Sanitizes folder names to avoid issues with special characters.
+- Saves the source URL in a text file within the comic's folder.
+
+### search_download.py
 
 ### search_download.py
 
@@ -20,26 +33,61 @@ Searches for comics and optionally downloads them.
 
 Usage:
 
+```bash
 python search_download.py --search <term> [--download] [--with-url]
+```
 
+- `<term>`: The search term to find comics.
+- `--download`: Optional flag to download the found comics.
+- `--with-url`: Optional flag to display URLs with search results.
+
+Features:
+- Searches for comics on readallcomics.com based on the provided term.
+- Displays search results with comic titles.
+- Can optionally show URLs for each comic in the search results.
+- Provides an option to download all found comics.
+- Uses multithreading for faster processing and downloading.
+- Skips already downloaded issues to avoid duplicates.
+- Sanitizes folder and file names to prevent issues with special characters.
 
 ### download_single_issue.py
 
-Downloads a single comic issue from a given URL.
+Downloads a single comic issue from a given URL and saves it as a PDF.
 
 Usage:
 
+```bash
 python download_single_issue.py --url <issue_url> --file_path <output_file_path>
+```
 
+- `<issue_url>`: The URL of the specific comic issue to download.
+- `<output_file_path>`: The file path where the downloaded issue will be saved as a PDF.
 
+Features:
+- Fetches images from the provided URL.
+- Processes and resizes images for consistent quality.
+- Combines all images into a single PDF file.
+- Handles both relative and absolute image URLs.
+- Uses BeautifulSoup for HTML parsing.
+- Utilizes the Pillow library for image processing.
 ### update_comic.py
 
 Updates the comics library by downloading the latest issues for all comics in the Comics folder.
 
 Usage:
 
+```bash
 python update_comic.py
+```
 
+Features:
+- Scans the Comics folder for all comic subfolders.
+- Reads the URL file in each comic subfolder to get the source URL.
+- Checks for new issues by comparing available issues with already downloaded ones.
+- Downloads new issues using multithreading for improved performance.
+- Skips already downloaded issues to avoid duplicates.
+- Shows progress bars for both checking updates and downloading new issues.
+- Sanitizes file names to prevent issues with special characters.
 
 ## Requirements
 
