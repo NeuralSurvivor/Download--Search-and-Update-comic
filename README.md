@@ -1,4 +1,3 @@
-
 # ComicSync
 
 ComicSync is a Python-based tool for searching, downloading, and updating comics from readallcomics.com.
