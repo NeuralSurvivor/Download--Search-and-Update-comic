@@ -10,6 +10,7 @@ import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
+import simple_term_menu
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
@@ -64,6 +65,18 @@ def search_and_download(args):
         return
 
     if args.download:
+        if args.select:
+            comic_list = comic_list.find_all("li")
+            option = list([comic.a["title"] for comic in comic_list])
+            menu = simple_term_menu.TerminalMenu(
+                option,
+                multi_select=True,
+                show_multi_select_hint=True,
+            )
+            selected_indices = menu.show()
+            comic_list = [comic_list[i] for i in selected_indices]
+        else:
+            comic_list = comic_list.find_all("li")
         download_list = []
         with ThreadPoolExecutor() as executor:
             futures = [
@@ -75,7 +88,7 @@ def search_and_download(args):
                     .replace("(", "")
                     .replace(")", ""),
                 )
-                for comic in comic_list.find_all("li")
+                for comic in comic_list
             ]
 
             for future in tqdm(
@@ -116,6 +129,9 @@ if __name__ == "__main__":
         "--download",
         action="store_true",
         help="Download the comics from search results",
+    )
+    parser.add_argument(
+        "--select", action="store_true", help="Select comics to download"
     )
     parser.add_argument("--with-url", action="store_true", help="Print result with URL")
     args = parser.parse_args()

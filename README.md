@@ -32,22 +32,26 @@ Searches for comics and optionally downloads them.
 
 Usage:
 
-```bash
-python search_download.py --search <term> [--download] [--with-url]
-```
+
+python search_download.py --search <term> [--download] [--with-url] [--select]
+
 
 - `<term>`: The search term to find comics.
 - `--download`: Optional flag to download the found comics.
 - `--with-url`: Optional flag to display URLs with search results.
+- `--select`: Optional flag to select specific comics to download.
 
 Features:
 - Searches for comics on readallcomics.com based on the provided term.
 - Displays search results with comic titles.
 - Can optionally show URLs for each comic in the search results.
 - Provides an option to download all found comics.
+- Allows selection of specific comics to download when using the `--select` flag.
 - Uses multithreading for faster processing and downloading.
 - Skips already downloaded issues to avoid duplicates.
 - Sanitizes folder and file names to prevent issues with special characters.
+- Creates a folder for each comic series inside a "Comics" directory.
+- Saves the source URL in a text file within each comic's folder.
 
 ### download_single_issue.py
 
