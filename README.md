@@ -12,15 +12,16 @@ ComicSync is a Python-based tool for searching, downloading, and updating comics
 ## Installation
 
 1. Clone the repository:
-   
+   ```besh
    git clone https://github.com/yourusername/ComicSync.git
    cd ComicSync
+   ```
    
 
-2. Install the required dependencies:
-   
+3. Install the required dependencies:
+   ```besh
    pip install -r requirements.txt
-   
+   ```
 
 ## Usage
 
@@ -30,9 +31,9 @@ ComicSync provides several commands:
 
 Search for comics and optionally download them:
 
-
+```besh
 python comicSync.py search <search_term> [--download] [--select] [--with-url]
-
+```
 
 - `<search_term>`: The term to search for
 - `--download` or `-d`: Download the comics from search results
@@ -43,17 +44,17 @@ python comicSync.py search <search_term> [--download] [--select] [--with-url]
 
 Update all comics in your library with new issues:
 
-
+```besh
 python comicSync.py update
-
+```
 
 ### Download Single Comic or Issue
 
 Download a specific comic or issue:
 
-
+```besh
 python comicSync.py download --url <url> -f <folder_or_file_path> [--issue]
-
+```
 
 - `--url`: The URL of the comic or issue to download
 - `-f`: The folder or file path to save the downloaded comic or issue
